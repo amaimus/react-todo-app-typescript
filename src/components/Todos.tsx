@@ -4,9 +4,10 @@ import { Todo } from './Todo.tsx'
 
 interface Props {
   todos: ListOfTodos
+  onRemoveTodo: (id: string) => void
 }
 
-export const Todos: FC<Props> = ({ todos }) => {
+export const Todos: FC<Props> = ({ todos, onRemoveTodo }) => {
   return (
     <>
       <ul className='todo-list'>
@@ -20,6 +21,7 @@ export const Todos: FC<Props> = ({ todos }) => {
               id={todo.id}
               title={todo.title}
               completed={todo.completed}
+              onRemoveTodo={onRemoveTodo}
             />
           </li>
         )}
