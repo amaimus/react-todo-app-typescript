@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { Todos } from './components/Todos'
 import { Footer } from './components/Footer.js'
 import { mockTodos } from './mocks/index.js'
-import { type TodoId, type Todo, type FilterValue } from './types.js'
+import { type TodoId, type Todo, type FilterValue, type TodoTitle } from './types.js'
 import { TODO_FILTERS } from './consts.js'
-
+import { Header } from './components/Header.js'
 function App (): JSX.Element {
   const [todos, setTodos] = useState(mockTodos)
   const [filterSelected, setFilterSelected] = useState<FilterValue>(TODO_FILTERS.ALL)
@@ -40,6 +40,21 @@ function App (): JSX.Element {
     setTodos(newTodos)
   }
 
+  const handleAddTodo = ({ title }: TodoTitle) => {
+    const newTodo = {
+      title,
+      id: crypto.randomUUID(),
+      completed: false
+    }
+
+    const newTodos = [
+      newTodo,
+      ...todos
+    ]
+
+    setTodos(newTodos)
+  }
+
   const activeCount = todos.filter(todo => !todo.completed).length
 
   const completedCount = todos.length - activeCount
@@ -52,7 +67,7 @@ function App (): JSX.Element {
 
   return (
     <div className='todoapp'>
-      <h1>Todos</h1>
+      <Header saveTodo={handleAddTodo} />
 
       <Todos
         todos={filteredTodos}
