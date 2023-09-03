@@ -1,14 +1,16 @@
 import { useEffect, useReducer } from 'react'
 import { type TodoId, type Todo, type FilterValue, type TodoTitle, type ListOfTodos } from '../types.js'
 import { TODO_FILTERS } from '../consts.js'
-import { fetchTodos } from '../services/todos.js'
+import { fetchTodos, updateTodos } from '../services/todos.js'
 
 const initialState = {
   todos: [],
+  sync: false,
   filterSelected: TODO_FILTERS.ALL
 }
 interface State {
   todos: ListOfTodos
+  sync: boolean
   filterSelected: FilterValue
 }
 
@@ -26,6 +28,7 @@ const reducer = (state: State, action: Action): State => {
     const { todos } = action.payload
     return {
       ...state,
+      sync: false,
       todos
     }
   }
@@ -33,6 +36,7 @@ const reducer = (state: State, action: Action): State => {
   if (action.type === 'CLEAR_COMPLETED') {
     return {
       ...state,
+      sync: true,
       todos: state.todos.filter((todo) => !todo.completed)
     }
   }
@@ -41,6 +45,7 @@ const reducer = (state: State, action: Action): State => {
     const { id, completed } = action.payload
     return {
       ...state,
+      sync: true,
       todos: state.todos.map((todo) => {
         if (todo.id === id) {
           return {
@@ -58,6 +63,7 @@ const reducer = (state: State, action: Action): State => {
     const { filter } = action.payload
     return {
       ...state,
+      sync: false,
       filterSelected: filter
     }
   }
@@ -66,6 +72,7 @@ const reducer = (state: State, action: Action): State => {
     const { id } = action.payload
     return {
       ...state,
+      sync: true,
       todos: state.todos.filter((todo) => todo.id !== id)
     }
   }
@@ -80,6 +87,7 @@ const reducer = (state: State, action: Action): State => {
 
     return {
       ...state,
+      sync: true,
       todos: [...state.todos, newTodo]
     }
   }
@@ -88,6 +96,7 @@ const reducer = (state: State, action: Action): State => {
     const { id, title } = action.payload
     return {
       ...state,
+      sync: true,
       todos: state.todos.map((todo) => {
         if (todo.id === id) {
           return {
@@ -105,7 +114,7 @@ const reducer = (state: State, action: Action): State => {
 }
 
 export const useTodos = () => {
-  const [{ todos, filterSelected }, dispatch] = useReducer(reducer, initialState)
+  const [{ sync, todos, filterSelected }, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
     fetchTodos()
@@ -114,6 +123,12 @@ export const useTodos = () => {
       })
       .catch(err => { console.error(err) })
   }, [])
+
+  useEffect(() => {
+    if (sync) {
+      updateTodos({ todos }).catch(err => { console.error(err) })
+    }
+  }, [todos, sync])
 
   const handleRemove = ({ id }: TodoId) => {
     dispatch({ type: 'REMOVE', payload: { id } })
