@@ -1,10 +1,10 @@
-import { useReducer } from 'react'
-import { mockTodos } from '../mocks/index.js'
+import { useEffect, useReducer } from 'react'
 import { type TodoId, type Todo, type FilterValue, type TodoTitle, type ListOfTodos } from '../types.js'
 import { TODO_FILTERS } from '../consts.js'
+import { fetchTodos } from '../services/todos.js'
 
 const initialState = {
-  todos: mockTodos,
+  todos: [],
   filterSelected: TODO_FILTERS.ALL
 }
 interface State {
@@ -106,8 +106,14 @@ const reducer = (state: State, action: Action): State => {
 
 export const useTodos = () => {
   const [{ todos, filterSelected }, dispatch] = useReducer(reducer, initialState)
-  /* const [todos, setTodos] = useState(mockTodos)
-  const [filterSelected, setFilterSelected] = useState<FilterValue>(TODO_FILTERS.ALL) */
+
+  useEffect(() => {
+    fetchTodos()
+      .then(todos => {
+        dispatch({ type: 'INIT_TODOS', payload: { todos } })
+      })
+      .catch(err => { console.error(err) })
+  }, [])
 
   const handleRemove = ({ id }: TodoId) => {
     dispatch({ type: 'REMOVE', payload: { id } })
