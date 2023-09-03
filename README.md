@@ -1,4 +1,5 @@
-## Crear un TodoMVC con TypeScript
+## Crear un Todo con TypeScript con sincronización en backend
+![Animation](https://github.com/amaimus/react-todo-app-typescript/assets/35699916/beea185f-9614-4875-b10b-37ab728c45c3)
 
 - [x] Inicializar proyecto con Vite
 - [x] Añadir linter para TypeScript + React
