@@ -55,6 +55,19 @@ function App (): JSX.Element {
     setTodos(newTodos)
   }
 
+  const handleEditTodo = ({ id, title }: Pick<Todo, 'title' | 'id'>) => {
+    const newTodos = todos.map(todo => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          title
+        }
+      }
+      return todo
+    })
+    setTodos(newTodos)
+  }
+
   const activeCount = todos.filter(todo => !todo.completed).length
 
   const completedCount = todos.length - activeCount
@@ -73,6 +86,7 @@ function App (): JSX.Element {
         todos={filteredTodos}
         onRemoveTodo={handleRemove}
         onCompleteTodo={handleCompleted}
+        onEditTodo={handleEditTodo}
       />
 
       <Footer
