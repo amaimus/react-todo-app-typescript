@@ -14,7 +14,7 @@ export const Todo: FC<Props> = (
   { id, title, completed, onRemoveTodo, onCompleteTodo, isEditing, setIsEditing, onEditTodo }
 ) => {
   const [editedTitle, setEditedTitle] = useState(title)
-  const inputEditTitle = useRef(null)
+  const inputEditTitle = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     inputEditTitle.current?.focus()
