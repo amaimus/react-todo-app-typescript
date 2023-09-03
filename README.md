@@ -14,4 +14,4 @@
 - [x] Poder editar el texto de un TODO (Doble click)
 - [x] Añadir animaciones con AutoAnimate
 - [x] Pasar a Reducer
-- [ ] Sincronizar con el backend
+- [x] Sincronizar con el backend
