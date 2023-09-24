@@ -1,5 +1,8 @@
 ## Create a TodoMVC with TypeScript
 
+![image](https://github.com/amaimus/react-todo-app-typescript/assets/35699916/68508c60-59c7-436c-8e11-28a9c9106b92)
+
+
 https://github.com/amaimus/react-todo-app-typescript/assets/35699916/76aef0b9-b1cb-4bcf-916f-430a7e54ea14
 
 - [x] Initialize project with Vite
