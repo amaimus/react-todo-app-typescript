@@ -1,9 +1,20 @@
-## Create a TodoMVC with TypeScript
+# TodoMVC with TypeScript
 
-![image](https://github.com/amaimus/react-todo-app-typescript/assets/35699916/68508c60-59c7-436c-8e11-28a9c9106b92)
+🟥 **Español**
 
+Una implementación sencilla de una aplicación TODO. Desarrollada con React y TypeScript y utilizando estilos de TodoMVC. En esta aplicación, listamos las tareas pendientes, permitimos editar, eliminar y crear nuevas. Además, hemos incorporado animaciones con AutoAnimate, mostramos un contador con el estado de todas las tareas pendientes y sincronizamos los datos con un servidor.
+
+🟦 **English**
+
+Simple TODO app built with React and TypeScript, featuring TodoMVC styling. It manages pending tasks, supports editing, deletion, and creation. Includes AutoAnimate animations, task status counter, and server data synchronization.
+
+![react-todo-app-typescript](https://github.com/amaimus/react-todo-app-typescript/assets/35699916/696a7520-8825-4756-a9f2-ebe074ae9e38)
 
 https://github.com/amaimus/react-todo-app-typescript/assets/35699916/76aef0b9-b1cb-4bcf-916f-430a7e54ea14
+
+--- 
+
+### Instructions
 
 - [x] Initialize project with Vite
 - [x] Add linter for TypeScript + React
@@ -20,3 +31,5 @@ https://github.com/amaimus/react-todo-app-typescript/assets/35699916/76aef0b9-b1
 - [x] Add animations with AutoAnimate
 - [x] Use a Reducer
 - [x] Synchronize with backend
+
+@midudev react class 2023
