@@ -8,7 +8,7 @@ Una implementación sencilla de una aplicación TODO. Desarrollada con React y T
 
 Simple TODO app built with React and TypeScript, featuring TodoMVC styling. It manages pending tasks, supports editing, deletion, and creation. Includes AutoAnimate animations, task status counter, and server data synchronization.
 
-![react-todo-app-typescript](https://github.com/amaimus/react-todo-app-typescript/assets/35699916/696a7520-8825-4756-a9f2-ebe074ae9e38)
+![image](https://github.com/amaimus/react-todo-app-typescript/blob/main/public/react-todo-app-typescript.png?raw=true)
 
 https://github.com/amaimus/react-todo-app-typescript/assets/35699916/76aef0b9-b1cb-4bcf-916f-430a7e54ea14
 
